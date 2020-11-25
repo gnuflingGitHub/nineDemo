@@ -68,11 +68,12 @@ public class LoanCalculatorDemoResource {
 		BigDecimal denomination = loanRequestO.getDenomination();//new BigDecimal("1.00");
 		Date disbDate = loanRequestO.getDisbursementDate(); 
 		
-		//TODO : alle input skal komme fra loanRequest
 		Calendar disbursementDate = Calendar.getInstance();
 		disbursementDate.set(2020, Calendar.NOVEMBER, 25);
-		//disbursementDate.set(disbDate.getYear(), disbDate.getMonth(), disbDate.getDate());
 		
+		disbursementDate.set(disbDate.getYear(), disbDate.getMonth(), disbDate.getDate());
+		
+		//TODO : alle input skal komme fra loanRequest
 		DaycountConventionType daycountConventionType = DaycountConventionType.US_30_360;
 		BigDecimal spreadMCI = new BigDecimal("0.003", CalculatorUtils.DEFAULT_MATH_CONTEXT);
 		BigDecimal spreadMSP = new BigDecimal("0.005", CalculatorUtils.DEFAULT_MATH_CONTEXT);
@@ -85,11 +86,6 @@ public class LoanCalculatorDemoResource {
 		
 		//TODO : calculate loan skal overloades/kaldes med loanRequestO:
 		LoanCalculated loanCalculated = loanCalculator.calculateLoan(loanAmount, spotPrice, paymentsPerYear, maturityInNmbrOfPayments, roundUpMaturityInNumberOfTerms, denomination, disbursementDate.getTime(), daycountConventionType, amortizationParameters, spreadMCI, spreadMSP);
-		
-		
 		return loanCalculated;
 	}
-	
-	
-	
 }

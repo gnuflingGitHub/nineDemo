@@ -63,8 +63,7 @@ public class LoanCalculatorService {
 	
 	private BigDecimal calculateOddFraction(Date disbursementDate, Date firstSettlingDate, DayCountConvention dayCountConvention,
 			Integer numberOfSettlingPeriodsProAnno) /*throws Calcul  :;atorException*/ {
-		// Now we calculate the number of whole periods between disbursementDate
-		// and firstSettlingDate
+		// Now we calculate the number of whole periods between disbursementDate and firstSettlingDate
 		// Ex. disbursementDate: 2020-01-17 firstSettlingDate: 2020-04-01
 		// Monthly periods:
 		// 2020-04-01 is counted back to 2020-02-01 og no of periods is counted

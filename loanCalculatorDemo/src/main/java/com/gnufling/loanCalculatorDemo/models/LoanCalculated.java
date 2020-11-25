@@ -35,9 +35,10 @@ public class LoanCalculated {
 	public void setPrincipalAmount(BigDecimal principalAmount) {
 		this.principalAmount = principalAmount;
 	}
-	public BigDecimal getHalfPrincipalAmount() {
-		return principalAmount.divide(BigDecimal.valueOf(2d));
-	}
+	
+//	public BigDecimal getHalfPrincipalAmount() {
+//		return principalAmount.divide(BigDecimal.valueOf(2d));
+//	}
 	
 	public LoanCalculated() {
 	}
