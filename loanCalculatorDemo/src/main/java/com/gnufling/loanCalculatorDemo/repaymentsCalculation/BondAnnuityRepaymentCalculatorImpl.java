@@ -93,43 +93,7 @@ public class BondAnnuityRepaymentCalculatorImpl extends RepaymentCalculatorImpl{
 		loanPayment.setSpreadMsp(MSPspread_n);
 		
 		loanPayment.setTotalPayment(totpmt_n);
-		
-		/*
-		return new LoanPayment(
-
-				n, // n
-				fraction_n, //fraction_n
-				ibond_n, // ibond_n
-				iamort_n, // iamort_n
-				ibond_n, // iloan_n
-				BDbop_n, // BDbop_n
-				Binterest_n, // Binterest_n
-				Bprinc_n, // Bprinc_n
-				BigDecimal.ZERO, // Bcancel_n
-				pmt_n, // pmt_n
-				BDeop_n, // BDeop_n
-				BDbop_n, // MDbop_n
-				Binterest_n, // MCinterest_n
-				BigDecimal.ZERO, // DAinterest_n
-				BigDecimal.ZERO, // DAamort_n
-				BigDecimal.ZERO, // rounding_n
-				Bprinc_n, // Mprinc_n
-				BigDecimal.ZERO, // Sdistrib_n
-				Binterest_n, // Minterest_n
-				BDeop_n, // MDeop_n
-				i_n, // i_n
-				BigDecimal.ZERO, // DAbop_n
-				BigDecimal.ZERO, // DAeop_n
-				BigDecimal.ZERO, // SBbop_n
-				BigDecimal.ZERO, // Sinterst_n
-				BigDecimal.ZERO, // Scontrib_n
-				BigDecimal.ZERO, // Srounding_n
-				BigDecimal.ZERO, // SBeop_n
-				MCIspread_n, // MCIspread_n  	 
-				MSPspread_n, // MSPspread_n	     
-				totpmt_n // totpmt_n
-		);
-		*/
+	
 		return loanPayment;
 	}
 	
@@ -146,11 +110,6 @@ public class BondAnnuityRepaymentCalculatorImpl extends RepaymentCalculatorImpl{
 
 		if (iamort_n.compareTo(BigDecimal.ZERO) == 1) { // iamort_n > 0
 
-			/*
-			 * //m_act BigDecimal m_act = BigDecimal.valueOf(numberOfTerms_mact); //t BigDecimal t = BigDecimal.valueOf(noOfTermsPerYear_t); //n BigDecimal n =
-			 * BigDecimal.valueOf(paymentPeriod_n);
-			 */
-			// (iamort_n / t) (used in formula below)
 			BigDecimal iamort_n_divide_t = iamort_n.divide(BigDecimal.valueOf(noOfTermsPerYear_t));
 			// (1+iamort_n/t)pow(mact-n+1): (used in formula below)
 			BigDecimal one_plus_iamort_n_divide_t = BigDecimal.ONE.add(iamort_n_divide_t);
@@ -159,23 +118,8 @@ public class BondAnnuityRepaymentCalculatorImpl extends RepaymentCalculatorImpl{
 
 			int x = mact_minus_n_plus_1;
 
-			// DET ER HER DET GÅR GALT - HUSK AT DU LIGE HAR LAVET ET NYT REGNEARK TIL AT HJÆLPE
-			// MED AT CHECKE MELLEMBEREGNINGER UNDER TESTEN - LIGGER UNDER D:/FUNDINGXPERTEN OG
-			// HEDDER "BEREGNING AF OBLIGATIONSAFDRAG" - MÅSKE DET ER NOGET MED AT JEG IKKE KAN ANVENDE
-			// POW FUNKTIONEN - PRØV EVENTUELT
-			// AT TESTE POW FUNKTIONEN I "TEST PAKKEN". MÅSKE ER DER NOGET MED AT DU SKAL BRUGE DOUBLE ELLER FLOAT TIL DISSE
-			// BEREGNINGER OG SÅ SENERE KONVERTERE DEM TIL BIGDECIMAL IGEN (MENER AT JEG KAN HUSKE NOGET OM DET FRA SIDST....
-			// HUSK AT DENNE TEST KØRES FRA KLASSEN "CalculatorServicesImplTest" I PAKKEN "TESTS".
-			// RIGTIG GOD SOMMERFERIE :-)
-
-			// BigDecimal onePlusInterestRateRatePowerMinusNumberOfPayments = onePlusInterestRatePerRepayment.pow(-requestedTotalNumberOfSettlingPeriods,
-			// CalculatorUtils.DEFAULT_MATH_CONTEXT);
-
 			BigDecimal one_plus_iamort_n_divide_t_pow_mact_minus_n_plus_1 = one_plus_iamort_n_divide_t.pow(x, CalculatorUtils.DEFAULT_MATH_CONTEXT);
-			// 1-(1+iamort_n/t)pow(mact-n+1)pow(mact-n+1)
-
 			BigDecimal een = BigDecimal.ONE;
-
 			BigDecimal one_minus_one_plus_iamort_n_divide_t_pow_mact_minus_n_plus_1 = een.subtract(one_plus_iamort_n_divide_t_pow_mact_minus_n_plus_1,
 					CalculatorUtils.DEFAULT_MATH_CONTEXT);
 
@@ -192,10 +136,7 @@ public class BondAnnuityRepaymentCalculatorImpl extends RepaymentCalculatorImpl{
 
 		}
 
-		//Nyt
 		bondPrincipalUnrounded = bondPrincipalUnrounded.multiply(fraction, CalculatorUtils.DEFAULT_MATH_CONTEXT);
-
-		
 		bondPrincipalPaymentPeriodN_Bprinc_n = CalculatorUtils.roundToDenominationFloatingPoint(bondPrincipalUnrounded, denomination_d);
 		return bondPrincipalPaymentPeriodN_Bprinc_n;
 

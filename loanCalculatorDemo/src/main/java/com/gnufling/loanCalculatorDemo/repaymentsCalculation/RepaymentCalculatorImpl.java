@@ -69,15 +69,6 @@ public abstract class RepaymentCalculatorImpl implements RepaymentCalculator {
 		if (amortizationParameters instanceof FixedInterestRateBondAnnuityAmortizationParameters) {
 			repaymentCalculatorImpl = new BondAnnuityRepaymentCalculatorImpl();
 
-			// The fixed interest and amortization interest rates are set on the first element 
-			// of their repective lists - the lists will later on be filled with
-			// elements
-			// according to the requested maturity of the loan and with same
-			// (fixed) rates, before the amortization is calculated. Is
-			// so, because we (The RepaymentCalculatorImpl) do not know the maturity
-			// at this point of time (now) and because we don't want the amortization calculator to be
-			// responsible knowing whether the loan is fixed or variable rate.
-			
 			BigDecimal fixedInterestRate = ((FixedInterestRateAmortizationParameters) amortizationParameters).getFixedInterestRateProAnno();
 			repaymentCalculatorImpl.bondInterestRatesForCalculation.add(new LoanInterestRate(fixedInterestRate));
 			

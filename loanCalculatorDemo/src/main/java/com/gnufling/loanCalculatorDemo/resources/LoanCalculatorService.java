@@ -26,7 +26,6 @@ public class LoanCalculatorService {
 
 		LoanCalculated loanCalculated = new LoanCalculated();
 		
-		
 		Date firstDueDate = CalculatorUtils.calculateNextSettlingDate(disbursementDate, numberOfPaymentsPerYear, 1, 1);
 		
 		DayCountConvention dayCountConventionimpl = DayCountConventionFactory.getInstance(daycountConventionType);
@@ -63,18 +62,7 @@ public class LoanCalculatorService {
 	
 	private BigDecimal calculateOddFraction(Date disbursementDate, Date firstSettlingDate, DayCountConvention dayCountConvention,
 			Integer numberOfSettlingPeriodsProAnno) /*throws Calcul  :;atorException*/ {
-		// Now we calculate the number of whole periods between disbursementDate and firstSettlingDate
-		// Ex. disbursementDate: 2020-01-17 firstSettlingDate: 2020-04-01
-		// Monthly periods:
-		// 2020-04-01 is counted back to 2020-02-01 og no of periods is counted
-		// to 2.
-
-		// Then the interval of days between 2020-01-17 and 2020-02-01 is 
-		// calculated, depending on interestcalculationmethod.
-		// Now we have calculated "the numerator" of the oddFraction.
-		// "The denominator" findes som antal dage i disbursementmåneden
-		// afhængig af metode.
-		
+			
 		int numberOfMonthsPerSettlingPeriod = 12 / numberOfSettlingPeriodsProAnno;
 
 		Calendar tempSettlingDate = Calendar.getInstance();

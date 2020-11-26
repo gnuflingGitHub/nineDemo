@@ -78,6 +78,7 @@ public class LoanCalculatorDemoResource {
 		BigDecimal spreadMCI = new BigDecimal("0.003", CalculatorUtils.DEFAULT_MATH_CONTEXT);
 		BigDecimal spreadMSP = new BigDecimal("0.005", CalculatorUtils.DEFAULT_MATH_CONTEXT);
 		
+		//Amortizationparameters dannes ud fra ønsket lånetype:
 		FixedInterestRateBondAnnuityAmortizationParameters amortizationParameters = new FixedInterestRateBondAnnuityAmortizationParameters();
 		amortizationParameters.setFixedAmortRateProAnno(BigDecimal.valueOf(0.02d));
 		amortizationParameters.setFixedInterestRateProAnno(BigDecimal.valueOf(0.02d));
